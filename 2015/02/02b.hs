@@ -12,8 +12,8 @@
 
 -- How many total feet of ribbon should they order?
 
-import Data.List
-import Data.List.Split
+import Data.List (sort)
+import Data.List.Split (splitOn)
 
 main = readFile "input.txt" >>= print . solve . parse
 

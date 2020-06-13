@@ -14,7 +14,7 @@
 -- All numbers in the elves' list are in feet. How many total square feet of 
 -- wrapping paper should they order?
 
-import Data.List.Split
+import Data.List.Split (splitOn)
 
 main = readFile "input.txt" >>= print . solve . parse
 
