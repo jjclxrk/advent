@@ -31,8 +31,6 @@ repeat1 _        = False
 -- contains at least one letter which repeats with exactly one letter between
 -- them.
 repeat2 :: String -> Bool
-repeat2 (x:y:z:xs)
-  | x == z    = True
-  | otherwise = repeat2 (y:z:xs)
-repeat2 _     = False
+repeat2 xs@(x:_:y:_) = x == y || repeat2 (tail xs)
+repeat2 _            = False
 
