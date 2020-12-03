@@ -17,7 +17,6 @@
 -- How many passwords are valid according to the new interpretation of the 
 -- policies?
 
-import Data.Char (isDigit)
 import Data.List (findIndices)
 import Text.Read (readMaybe)
 
