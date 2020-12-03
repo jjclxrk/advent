@@ -18,24 +18,27 @@
 -- policies?
 
 import Data.Char (isDigit)
+import Data.List (findIndices)
+import Text.Read (readMaybe)
 
-data Policy = Policy Char Int Int
+main = readFile "input.txt" >>= print . solve
 
-main = readFile "input.txt" >>= print . solve . map parse . lines
+solve :: String -> Int
+solve = length . filter valid . lines
 
-parse :: String -> (Policy, String)
-parse line = case words line of
-  [is, cs, pw] -> (uncurry (Policy (head cs)) $ parseIndices is, pw)
+valid :: String -> Bool
+valid line = 
+  case words line of
+    [indexStr, c:_, pw] -> 
+      case parseIndices indexStr of
+        Just (i, j) -> let ixs = map (+1) $ findIndices (==c) pw 
+                       in  elem i ixs /= elem j ixs
+        _           -> False
+    _               -> False
 
-parseIndices :: String -> (Int, Int)
-parseIndices rs = let (i, _:j) = break (== '-') rs in (read i - 1, read j - 1)
-
-valid :: Policy -> String -> Bool
-valid (Policy c i j) pw = (i' == c || j' == c) && i' /= j'
-  where
-    i' = pw !! i
-    j' = pw !! j
-
-solve :: [(Policy, String)] -> Int
-solve = length . filter (uncurry valid)
+parseIndices :: String -> Maybe (Int, Int)
+parseIndices indexStr =
+  case break (== '-') indexStr of
+    (i, _:j) -> (,) <$> readMaybe i <*> readMaybe j
+    _        -> Nothing
 
