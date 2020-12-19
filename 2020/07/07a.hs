@@ -18,7 +18,6 @@
 -- How many bag colors can eventually contain at least one shiny gold bag? 
 -- (The list of rules is quite long; make sure you get all of it.)
 
-import Data.List (nub)
 import Data.Graph (graphFromEdges, reachable, transposeG)
 
 main = readFile "input.txt" >>= print . solve . map parse . lines

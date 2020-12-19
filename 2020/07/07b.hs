@@ -8,7 +8,6 @@
 --
 -- How many individual bags are required inside your single shiny gold bag?
 
-import Data.List (nub)
 import Data.HashMap.Strict (HashMap)
 import qualified Data.HashMap.Strict as HM
 
