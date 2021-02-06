@@ -29,8 +29,8 @@ main = do
   result <- sum <$> getElems lights
   print result
 
--- | Perform an instruction, updating the array of "lights". Lights are 
---   represented as Booleans: `True` meaning "on" and `False` meaning "off".
+-- | Perform an instruction, updating the array of "lights". Light brightness 
+--   is represented as an Int.
 solve :: IOUArray (Int,Int) Int -> String -> IO () 
 solve lights xs = do
   let (f, (xmin,ymin), (xmax,ymax)) = parse xs
